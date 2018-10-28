@@ -1,7 +1,7 @@
 $(function() {
 
     Morris.Area({
-        element: 'morris-area-chart',
+        element: 'tardy-area-chart',
         data: [{
             period: '2010 Q1',
             iphone: 2666,
@@ -113,5 +113,5 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-    
+
 });
