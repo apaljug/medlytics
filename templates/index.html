@@ -142,10 +142,10 @@
                                     <table id="table_names" class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
+                                                <th>Patient Name</th>
+                                                <th>Operations</th>
+                                                <th>Start Date/Time</th>
+                                                <th>End Date/Time</th>
                                             </tr>
                                             <script>
 
@@ -155,31 +155,53 @@
                                              url: '/getappointment',
                                              cache:false,
                                              success: function(data){
-                                               alert('HERE');
+                                               //alert('HERE');
                                                // console.log(data);
                                                $.each(data, function(d,v){
                                                console.log(v);
                                                });
                                              }
                                            });
-                                           alert("1");
+                                           //alert("1");
 
-                alert("2");
+                //alert("2");
                 $.ajax({
 
                     url : '/getappointment',
                     type : 'GET',
                     dataType : 'JSON',
                     success : function(data) {
-                        alert("3");
+                        //alert("3");
                         $(data).each(
                                 function() {
+
+                                        //String end = this.end_time
+                                        //String start = this.start_time
+                                        //S
+                                        var ops = this.operations.toString().split(",")
+                                            console.log(ops[0]);
+                                        var opsFin = "";
+                                        for (var i =0; i < ops.length; i++){
+
+                                            if (i + 1 < ops.length)
+                                                opsFin +=       ops[i].replace(/[^0-9a-z]/gi, '') +  ", ";
+                                            else
+                                                opsFin +=       ops[i].replace(/[^0-9a-z]/gi, '');
+                                        }
+                                        var end = this.end_time.toString();
+                                        var endFin = end.substring(0,2) + "/"+ end.substring(2,4)+"/" +end.substring(4,6)+ " "+ end.substring(6,8)+ ":" +end.substring(8,10);
+                                        var start = this.end_time.toString();
+                                        var startFin = start.substring(0,2) + "/"+ start.substring(2,4)+"/" +start.substring(4,6)+ " "+ start.substring(6,8)+ ":" +start.substring(8,10);
+                                        //console.log(endFin + "bitch");
                                     $('#table_names').append(
-                                            '<tr><td>' + this.name
+                                            '<tr><td>'
+                                            + this.name
                                                     + '</td><td>'
-                                                    + this.name
+                                                    + opsFin
                                                     + '</td><td>'
-                                                    + this.name
+                                                    + startFin
+                                                    +'</td><td>'
+                                                    + endFin
                                                     + '</td><td>')
                                 });
                     },
