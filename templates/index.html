@@ -138,7 +138,7 @@
 
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="table-responsive">
+                                <div class="table-hoover">
                                     <table id="table_names" class="table table-hover">
                                         <thead>
                                             <tr>
@@ -146,25 +146,16 @@
                                                 <th>Operations</th>
                                                 <th>Start Date/Time</th>
                                                 <th>End Date/Time</th>
+                                                <th>Arrival Date/Time</th>
+                                                <th>Finished Date/Time</th>
+                                                <th>Submit</th>
+
                                             </tr>
                                             <script>
 
-                                            $.ajax({
-                                             dataType: "json",
-                                             type: "GET",
-                                             url: '/getappointment',
-                                             cache:false,
-                                             success: function(data){
-                                               //alert('HERE');
-                                               // console.log(data);
-                                               $.each(data, function(d,v){
-                                               console.log(v);
-                                               });
-                                             }
-                                           });
-                                           //alert("1");
 
-                //alert("2");
+
+
                 $.ajax({
 
                     url : '/getappointment',
@@ -192,6 +183,11 @@
                                         var endFin = end.substring(0,2) + "/"+ end.substring(2,4)+"/" +end.substring(4,6)+ " "+ end.substring(6,8)+ ":" +end.substring(8,10);
                                         var start = this.end_time.toString();
                                         var startFin = start.substring(0,2) + "/"+ start.substring(2,4)+"/" +start.substring(4,6)+ " "+ start.substring(6,8)+ ":" +start.substring(8,10);
+
+                                        var inputs = "<input type=\"text\"  form=\"my_form\" placeholder=\"mmddyyhhmm\"/>";
+
+                                        var but = "<button type=\"submit\" class=\"btn btn-default\" id=\"info-submit\"> Log Attendance</button>";
+
                                         //console.log(endFin + "bitch");
                                     $('#table_names').append(
                                             '<tr><td>'
@@ -202,7 +198,16 @@
                                                     + startFin
                                                     +'</td><td>'
                                                     + endFin
-                                                    + '</td><td>')
+                                                    +'</td><td>'+ inputs + '</td><td>'
+                                                    + inputs
+                                                    +'</td><td>'
+                                                    + but
+                                                    +'</td></tr>'
+
+
+
+                                                )
+
                                 });
                     },
                     error : function(data) {
@@ -254,10 +259,12 @@
 
 
 
-                                      console.log("fuck you")
                                             </script>
 
-                                        </thead>
+
+
+
+                                            </thead>
 
                                     </table>
                                 </div>
@@ -293,6 +300,19 @@
                                         <option>Head</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Start Time</label>
+
+                                    <input class="form-control" placeholder="mmddyyhhmm" id="start_time">
+                                </div>
+
+
+                                <div class="form-group">
+                                <label>End Time</label>
+                                <input class="form-control" placeholder="mmddyyhhmm" id="end_time">
+
+                                </div>
+
                                 <button type="submit" class="btn btn-default" id="apt-submit">Submit Button</button>
                                 <button type="reset" class="btn btn-default">Reset Button</button>
 
@@ -301,7 +321,7 @@
                                 /* attach a submit handler to the form */
                                 jQuery.ajaxSettings.traditional = true;
                                 $("#apptid").submit(function(event) {
-
+                                        alert(1);
                                   /* stop form from submitting normally */
                                   event.preventDefault();
 
@@ -310,7 +330,7 @@
                                       url = $form.attr( 'action' );
 
                                   /* Send the data using post with element id name and name2*/
-                                  var posting = $.post( url, { name: $('#apptname').val(), operations: $('#operations :selected').val() } );
+                                  var posting = $.post( url, { name: $('#apptname').val(), operations: $('#operations :selected').val() ,start_time: $('#start_time').val(), end_time : $('#end_time').val()} );
 
                                   /* Alerts the results */
                                   posting.done(function( data ) {
