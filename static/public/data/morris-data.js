@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
 
     Morris.Area({
         element: 'morris-area-chart',
@@ -60,21 +60,31 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-
+    //
+    // Morris.Donut({
+    //     element: 'pie-chart',
+    //     data: [{
+    //         label: "No shows",
+    //         value: 12
+    //     }, {
+    //         label: "Tardies",
+    //         value: 30
+    //     }, {
+    //         label: "On-time",
+    //         value: 20
+    //     }],
+    //     resize: true
+    //
+    // });
     Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Download Sales",
-            value: 12
-        }, {
-            label: "In-Store Sales",
-            value: 30
-        }, {
-            label: "Mail-Order Sales",
-            value: 20
-        }],
-        resize: true
-    });
+  element: 'pie-chart',
+  data: [
+    {label: "Friends", value: 30},
+    {label: "Allies", value: 15},
+    {label: "Enemies", value: 45},
+    {label: "Neutral", value: 10}
+  ]
+});
 
     Morris.Bar({
         element: 'morris-bar-chart',
@@ -113,5 +123,5 @@ $(function() {
         hideHover: 'auto',
         resize: true
     });
-    
+
 });
