@@ -30,6 +30,20 @@
 
     <!-- Custom Fonts -->
     <link href="/static/public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="/static/public/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/public/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/static/public/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/static/public/vendor/raphael/raphael.min.js"></script>
+    <script src="/static/public/vendor/morrisjs/morris.min.js"></script>
+    <script src="/static/public/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/public/dist/js/sb-admin-2.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -114,40 +128,99 @@
             <!-- /.row -->
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
 
-                    <!-- /.panel -->
-
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bell fa-fw"></i> Appointments
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                              <script src="../public/data/appointment-data.js"></script>
 
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Username</th>
+                                            </tr>
+                                            <script>
+
+                                            $.ajax({
+     dataType: "json",
+     type: "get",
+     url: '172.20.10.4:5000/getappointment',
+     cache:false,
+     success: function(data){
+       alert('HERE');
+       console.log(data);
+       $.each(data.library, function(k,v){
+       console.log(k + "/" + v);
+       });
+     }
+   });
+                                            /*(function() {
+                                            $.getJSON("172.20.10.4:5000/getappointment/").done(
+                                              function(data) {
+                                                console.log("dick")
+                                                console.log(data)
+                                              }
+                                            )
+                                          })();*/
+                                    // $.getJSON("172.20.10.4:5000/getappointment/").done(function(data,status){
+                                    //   console.log("ok",data);
+                                    //   console.log(status);
+                                    //     $.each(data, function () {
+                                    //     console.log(this);
+                                    //     // 2.2 Create table column for categories
+                                    //     var td_categories = $("<td/>");
+                                    //
+                                    //     // 2.3 get each category of this article
+                                    //     $.each(this.categories, function (i, category) {
+                                    //         var span = $("<span/>");
+                                    //         span.text(name);
+                                    //         td_categories.append(span);
+                                    //     });
+                                    //
+                                    //     // 2.4 Create table column for tags
+                                    //    var td_tags = $("<td/>");
+                                    //
+                                    //     // 2.5 get each tag of this article
+                                    //     $.each(this.tags, function (i, tag) {
+                                    //         var span = $("<span/>");
+                                    //         span.text(start_time);
+                                    //         td_tags.append(span);
+                                    //     });
+                                    //
+                                    //     // 2.6 Create a new row and append 3 columns (title+url, categories, tags)
+                                    //     $("#added-articles").append($('<tr/>')
+                                    //             .append($('<td/>').html("<a href='"+this.url+"'>"+this.title+"</a>"))
+                                    //             .append(td_name)
+                                    //             .append(td_tags)
+                                    //     );
+                                    //   });
+                                    // })
+
+
+
+                                      console.log("fuck you")
+                                            </script>
+
+                                        </thead>
+
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
                             </div>
-                            <!-- /.list-group -->
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
 
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+
+                    <div class="col-lg-4">
+
                     <div class="panel panel-default">
                       <div class="panel-heading">
                           <i class="fa fa-edit fa-fw"></i> Add Appointment
@@ -182,6 +255,7 @@
 
                           </div>
                       </div>
+                    </div>
 
 
                     </div>
@@ -205,21 +279,9 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/static/public/vendor/jquery/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/static/public/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="/static/public/vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="/static/public/vendor/raphael/raphael.min.js"></script>
-    <script src="/static/public/vendor/morrisjs/morris.min.js"></script>
-    <script src="/static/public/data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="/static/public/dist/js/sb-admin-2.js"></script>
 
 </body>
 

@@ -1,6 +1,6 @@
 $('#example').dataTable( {
   "ajax": {
-    "url": "data.json",
+    "url": "172.20.10.4:5000/getappointment",
     "dataSrc": ""
   }
 } );

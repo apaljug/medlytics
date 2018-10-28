@@ -246,6 +246,43 @@
 
                 <!-- /.panel-body -->
             </div>
+<<<<<<< HEAD
+=======
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Current Wait Time
+                </div>
+                <div class="panel-body">
+
+                  <script>
+                   var currentTime = new Date(),
+                       hours = currentTime.getHours(),
+                       minutes = currentTime.getMinutes();
+
+                   if (minutes < 10) {
+                    minutes = "0" + minutes;
+                   }
+
+                   var suffix = "AM";
+                   if (hours >= 12) {
+                     suffix = "PM";
+                     hours = hours - 12;
+                   }
+                   if (hours == 0) {
+                    hours = 12;
+                   }
+
+                   document.write(hours + ":" + minutes + " " + suffix)
+                  </script>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+          </div>
+          <!-- /#wrapper -->
+
+          <!-- jQuery -->
+          <script src="/static/public/vendor/jquery/jquery.min.js"></script>
+>>>>>>> cf2110aee6fd1d87df9c9f092d97eb080505f55b
 
 
           </div>
