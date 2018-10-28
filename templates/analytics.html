@@ -128,71 +128,73 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Estimated Wait Time
-                </div>
-                <div class="panel-body">
-                    <div class="jumbotron">
-                        <h1>
 
-                          <script>
-                          function timedRefresh(ti
-                          	var currentTime = new Date(),
-                                hours = currentTime.getHours(),
-                                minutes = currentTime.getMinutes();
+            <div class="row">
+                    <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Estimated Wait Time
+                        </div>
+                        <div class="panel-body">
+                              <script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
 
-                          	if (minutes < 10) {
-                          	 minutes = "0" + minutes;
-                            }
-
-                          	var suffix = "AM";
-                          	if (hours >= 12) {
-                              suffix = "PM";
-                              hours = hours - 12;
-                          	}
-                          	if (hours == 0) {
-                          	 hours = 12;
-                          	}
-
-
-                            document.write( hours + ":" + minutes + " " + suffix);
+<body onload="startTime()">
 
 
-                        </script>
 
-                      </h1>
+  <text style= " font-size: 300%"> Estimated Time of Next Appointment <text>
+<Strong><div style= " font-size: 300%"id="txt"></div></Strong>
 
 
+                        </div>
+                    </div>
                     </div>
 
+                    <div class="col-lg-4">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <i class="fa fa-bar-chart-o fa-fw"></i> Patient Arrival Data
+                                      </div>
+                                      <div class="panel-body">
+                                        <div id="donut-example" ></div>
+
+                                                            <script type="text/javascript">
+                                                                Morris.Donut({
+                                                                    element: 'donut-example',
+                                                                    data: [
+                                                                      { label: "No shows", value: 16 },
+                                                                      { label: "Tardies", value: 21 },
+                                                                      { label: "On-time", value: 64 }
+                                                                    ]
+                                                                });
+                                                            </script>
+
+                                            </div>
 
 
+
+                                      </div>
+                        </div>
                 </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Patient Arrival Data
-                </div>
-                <div class="panel-body">
-                  <div id="donut-example" ></div>
 
-                                      <script type="text/javascript">
-                                          Morris.Donut({
-                                              element: 'donut-example',
-                                              data: [
-                                                { label: "No shows", value: 16 },
-                                                { label: "Tardies", value: 21 },
-                                                { label: "On-time", value: 64 }
-                                              ]
-                                          });
-                                      </script>
+                <div class="row">
 
-                      </div>
-
-
-
-                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-bar-chart-o fa-fw"></i> Wait Time Data
@@ -242,51 +244,12 @@
 
 
                     </div>
+                    </div>
+
 
 
                 <!-- /.panel-body -->
-            </div>
-<<<<<<< HEAD
-=======
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Current Wait Time
-                </div>
-                <div class="panel-body">
 
-                  <script>
-                   var currentTime = new Date(),
-                       hours = currentTime.getHours(),
-                       minutes = currentTime.getMinutes();
-
-                   if (minutes < 10) {
-                    minutes = "0" + minutes;
-                   }
-
-                   var suffix = "AM";
-                   if (hours >= 12) {
-                     suffix = "PM";
-                     hours = hours - 12;
-                   }
-                   if (hours == 0) {
-                    hours = 12;
-                   }
-
-                   document.write(hours + ":" + minutes + " " + suffix)
-                  </script>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-          </div>
-          <!-- /#wrapper -->
-
-          <!-- jQuery -->
-          <script src="/static/public/vendor/jquery/jquery.min.js"></script>
->>>>>>> cf2110aee6fd1d87df9c9f092d97eb080505f55b
-
-
-          </div>
-          <!-- /#wrapper -->
 
 
 
