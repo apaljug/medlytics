@@ -1,3 +1,6 @@
-$(document).ready( function () {
-    $('#myTable').DataTable();
+$('#example').dataTable( {
+  "ajax": {
+    "url": "data.json",
+    "dataSrc": ""
+  }
 } );
