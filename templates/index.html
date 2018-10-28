@@ -52,6 +52,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 
 <body>
@@ -138,7 +139,7 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table id="table_names" class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -149,18 +150,44 @@
                                             <script>
 
                                             $.ajax({
-     dataType: "json",
-     type: "get",
-     url: '172.20.10.4:5000/getappointment',
-     cache:false,
-     success: function(data){
-       alert('HERE');
-       console.log(data);
-       $.each(data.library, function(k,v){
-       console.log(k + "/" + v);
-       });
-     }
-   });
+                                             dataType: "json",
+                                             type: "GET",
+                                             url: '/getappointment',
+                                             cache:false,
+                                             success: function(data){
+                                               alert('HERE');
+                                               // console.log(data);
+                                               $.each(data, function(d,v){
+                                               console.log(v);
+                                               });
+                                             }
+                                           });
+                                           alert("1");
+
+                alert("2");
+                $.ajax({
+
+                    url : '/getappointment',
+                    type : 'GET',
+                    dataType : 'JSON',
+                    success : function(data) {
+                        alert("3");
+                        $(data).each(
+                                function() {
+                                    $('#table_names').append(
+                                            '<tr><td>' + this.name
+                                                    + '</td><td>'
+                                                    + this.name
+                                                    + '</td><td>'
+                                                    + this.name
+                                                    + '</td><td>')
+                                });
+                    },
+                    error : function(data) {
+                        alert("4");
+                    }
+
+                });
                                             /*(function() {
                                             $.getJSON("172.20.10.4:5000/getappointment/").done(
                                               function(data) {
@@ -227,31 +254,48 @@
                       </div>
                       <div class="panel-body">
                           <div class="col-lg-9">
-                              <form role="form">
+                              <form role="form" action="/makeappointment" method="post" id="apptid">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input class="form-control" placeholder="First name">
-                                    <input class="form-control" placeholder="Last name">
+                                    <input class="form-control" placeholder="name" id="apptname" name="name">
                                 </div>
 
                                 <div class="form-group">
 
                                     <label>Selects</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="operations" id="operations" multiple>
                                         <option>X-ray</option>
                                         <option>Clean up</option>
                                         <option>Cavity filling</option>
                                         <option>Wisdom tooth surgery</option>
                                         <option>Head</option>
-                                        <script>
-                                            $( "option" ).add( "Test" );
-                                        </script>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-default">Submit Button</button>
+                                <button type="submit" class="btn btn-default" id="apt-submit">Submit Button</button>
                                 <button type="reset" class="btn btn-default">Reset Button</button>
 
                               </form>
+                            <script type='text/javascript'>
+                                /* attach a submit handler to the form */
+                                jQuery.ajaxSettings.traditional = true;
+                                $("#apptid").submit(function(event) {
+
+                                  /* stop form from submitting normally */
+                                  event.preventDefault();
+
+                                  /* get the action attribute from the <form action=""> element */
+                                  var $form = $( this ),
+                                      url = $form.attr( 'action' );
+
+                                  /* Send the data using post with element id name and name2*/
+                                  var posting = $.post( url, { name: $('#apptname').val(), operations: $('#operations :selected').val() } );
+
+                                  /* Alerts the results */
+                                  posting.done(function( data ) {
+                                    alert('success');
+                                  });
+                                });
+                            </script>
 
                           </div>
                       </div>
